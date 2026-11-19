@@ -11,44 +11,8 @@
 <style>
 /* Layout: página única que se lê como a documentação de uma API.
    Cada seção é um "endpoint" (GET /sobre, GET /stack...), e o topo mostra a resposta JSON do perfil. */
+/* tema único: escuro (verde) */
 :root {
-  --bg: #f4f7f6;
-  --surface: #ffffff;
-  --ink: #12201d;
-  --muted: #53635e;
-  --line: #d7e1dd;
-  --accent: #0b7a6b;
-  --accent-ink: #ffffff;
-  --accent-soft: #dcf0ea;
-  --code-bg: #0f1c1a;
-  --code-fg: #d3e6e1;
-  --code-key: #7fd6c4;
-  --code-str: #f0c978;
-  --code-dim: #6f8a84;
-
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0b1412;
-    --surface: #111e1b;
-    --ink: #e5efec;
-    --muted: #92a7a0;
-    --line: #213430;
-    --accent: #3fd0b8;
-    --accent-ink: #06201b;
-    --accent-soft: #123530;
-    --code-bg: #08100f;
-    --code-fg: #d3e6e1;
-    --code-key: #7fd6c4;
-    --code-str: #f0c978;
-    --code-dim: #6f8a84;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
   --bg: #0b1412;
   --surface: #111e1b;
   --ink: #e5efec;
@@ -63,6 +27,10 @@
   --code-str: #f0c978;
   --code-dim: #6f8a84;
   color-scheme: dark;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -90,11 +58,9 @@ a { color: inherit; }
 .nav { display: flex; align-items: center; gap: 6px 22px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 14px; }
 .nav a { text-decoration: none; color: var(--muted); }
 .nav a:hover { color: var(--accent); }
-.theme-btn { font: inherit; font-family: var(--font-mono); font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
-.theme-btn:hover { border-color: var(--accent); }
 
 /* hero */
-.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 40px; align-items: center; padding-block: 56px 48px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 56px 48px; }
 .eyebrow { font-family: var(--font-mono); font-size: 14px; color: var(--accent); margin: 0 0 14px; }
 h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 6.5vw, 4.4rem); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 20px; text-wrap: balance; }
 .lead { max-width: 52ch; color: var(--muted); font-size: 1.1rem; margin: 0 0 28px; }
@@ -105,7 +71,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-.response { background: var(--code-bg); color: var(--code-fg); border-radius: 12px; border: 1px solid var(--line); overflow: hidden; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; }
+.response { background: var(--code-bg); color: var(--code-fg); border-radius: 12px; border: 1px solid var(--line); overflow: hidden; font-family: var(--font-mono); font-size: 13px; line-height: 1.7; }
 .response-bar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--code-dim); font-size: 12.5px; }
 .response-bar b { color: var(--code-key); font-weight: 500; }
 .response pre { margin: 0; padding: 16px; overflow-x: auto; }
@@ -126,7 +92,7 @@ h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem
 .facts dd { margin: 0; font-weight: 500; }
 
 .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
-.group { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; min-width: 0; }
+.group { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 16px; min-width: 0; }
 .group h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--muted); margin: 0 0 14px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .chips li { font-family: var(--font-mono); font-size: 14px; padding: 4px 11px; border-radius: 6px; background: var(--accent-soft); color: var(--ink); }
@@ -171,7 +137,6 @@ footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; ju
       <a href="#projetos">/projetos</a>
       <a href="#formacao">/formacao</a>
       <a href="#contato">/contato</a>
-      <button class="theme-btn" id="theme-btn" type="button" aria-label="Alternar tema claro e escuro">tema</button>
     </nav>
   </header>
 
@@ -180,7 +145,7 @@ footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; ju
       <div>
         <p class="eyebrow">Desenvolvedor Backend</p>
         <h1>Eduardo Lopes</h1>
-        <p class="lead">Estudo Análise e Desenvolvimento de Sistemas e construo APIs com Python, FastAPI e PostgreSQL. Meu objetivo é atuar como programador Backend.</p>
+        <p class="lead">Estudo Análise e Desenvolvimento de Sistemas e construo APIs com Python, FastAPI e SQL. Meu objetivo é atuar como programador Backend.</p>
       </div>
 
       <div class="response" role="img" aria-label="Resposta JSON com o perfil de Eduardo Lopes">
@@ -190,9 +155,9 @@ footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; ju
   <span class="k">"funcao"</span>: <span class="s">"Desenvolvedor Backend"</span>,
   <span class="k">"formacao"</span>: <span class="s">"Análise e Desenvolvimento de Sistemas"</span>,
   <span class="k">"instituicao"</span>: <span class="s">"UNINASSAU"</span>,
-  <span class="k">"stack"</span>: <span class="d">[</span><span class="s">"Python"</span>, <span class="s">"FastAPI"</span>, <span class="s">"PostgreSQL"</span><span class="d">]</span>,
+  <span class="k">"stack"</span>: <span class="d">[</span><span class="s">"Python"</span>, <span class="s">"FastAPI"</span>, <span class="s">"PostgreSQL"</span>, <span class="s">"SQLAlchemy"</span><span class="d">]</span>,
   <span class="k">"ferramentas"</span>: <span class="d">[</span><span class="s">"Git"</span>, <span class="s">"GitHub"</span><span class="d">]</span>,
-  <span class="k">"aprendendo"</span>: <span class="d">[</span><span class="s">"SQLAlchemy"</span>, <span class="s">"Docker"</span>, <span class="s">"Fly.io"</span><span class="d">]</span>,
+  <span class="k">"aprendendo"</span>: <span class="d">[</span><span class="s">"Docker"</span>, <span class="s">"Fly.io"</span><span class="d">]</span>,
   <span class="k">"objetivo"</span>: <span class="s">"Atuar como programador Backend"</span>
 <span class="d">}</span></pre>
       </div>
@@ -224,7 +189,7 @@ footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; ju
         </div>
         <div class="group">
           <h3>banco de dados</h3>
-          <ul class="chips"><li>PostgreSQL</li><li>SQL</li></ul>
+          <ul class="chips"><li>PostgreSQL</li><li>SQLAlchemy</li></ul>
         </div>
         <div class="group">
           <h3>front-end básico</h3>
@@ -236,7 +201,7 @@ footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; ju
         </div>
         <div class="group learning">
           <h3>aprendendo agora</h3>
-          <ul class="chips"><li>SQLAlchemy</li><li>Docker</li><li>Fly.io</li></ul>
+          <ul class="chips"><li>Docker</li><li>Fly.io</li></ul>
         </div>
       </div>
     </section>
@@ -250,8 +215,8 @@ footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; ju
             <span class="status">Em desenvolvimento</span>
           </div>
           <h3>API com FastAPI</h3>
-          <p>Projeto para construir uma API com Python e FastAPI, usando SQL para guardar e consultar os dados. O código completo e o histórico de commits estão no GitHub.</p>
-          <ul class="chips"><li>Python</li><li>FastAPI</li><li>SQL</li></ul>
+          <p>Projeto para construir uma API com Python e FastAPI, usando SQLAlchemy para guardar e consultar os dados. O código completo e o histórico de commits estão no GitHub.</p>
+          <ul class="chips"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Docker</li><li>Fly.io</li></ul>
           <a class="link" href="https://github.com/eduardolopes79/fastapi" target="_blank" rel="noopener">Ver código no GitHub</a>
         </article>
         <article class="project empty">
@@ -287,22 +252,7 @@ footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; ju
 </div>
 
 <script>
-(function () {
-  var root = document.documentElement;
-  var btn = document.getElementById("theme-btn");
-  try {
-    var saved = localStorage.getItem("tema");
-    if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
-  } catch (e) {}
-  btn.addEventListener("click", function () {
-    var atual = root.getAttribute("data-theme");
-    if (!atual) atual = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    var novo = atual === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", novo);
-    try { localStorage.setItem("tema", novo); } catch (e) {}
-  });
-  document.getElementById("ano").textContent = new Date().getFullYear();
-})();
+document.getElementById("ano").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
